@@ -1,0 +1,594 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>EJS Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">EJS</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>EJS(Embedded JavaScript) is a simple templating language that lets you generate HTML markup with plain JavaScript.</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap cols-3">
+                <h2 id="get-started"><a class="h-anchor" href="#get-started">#</a>Get Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="hello-world"><a class="h-anchor" href="#hello-world">#</a>Hello world</h3>
+                        <div class="section">
+                            <h4 id="install"><a class="h-anchor" href="#install">#</a>install</h4>
+                            <pre><code class="hljs">npm <span class="hljs-keyword">install</span> ejs
+</code></pre>
+                            <h4 id="hello-ejs"><a class="h-anchor" href="#hello-ejs">#</a>hello.ejs</h4>
+                            <pre><code class="hljs language-html">&lt;% if (user.email) &#123; %&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&lt;%= user.email %&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+&lt;% &#125; %&gt;
+</code></pre>
+                            <h4 id="cli"><a class="h-anchor" href="#cli">#</a>CLI</h4>
+                            <pre><code class="hljs language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">ejs hello.ejs -o hello.html</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="render-with-data"><a class="h-anchor" href="#render-with-data">#</a>Render with Data</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="hljs-keyword">let</span> ejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ejs&#x27;</span>);
+
+<span class="hljs-keyword">let</span> people = [<span class="hljs-string">&#x27;geddy&#x27;</span>, <span class="hljs-string">&#x27;neil&#x27;</span>, <span class="hljs-string">&#x27;alex&#x27;</span>];
+<span class="hljs-keyword">let</span> tpl = <span class="hljs-string">&#x27;&lt;%= people.join(&quot;, &quot;); %&gt;&#x27;</span>;
+
+<span class="hljs-keyword">let</span> html = ejs.<span class="hljs-title function_">render</span>(tpl, &#123;<span class="hljs-attr">people</span>: people&#125;);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(html);
+</code></pre>
+                            <p>Pass EJS a template string and some data.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="browser-support"><a class="h-anchor" href="#browser-support">#</a>Browser Support</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;ejs.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">let</span> people = [<span class="hljs-string">&#x27;geddy&#x27;</span>, <span class="hljs-string">&#x27;neil&#x27;</span>, <span class="hljs-string">&#x27;alex&#x27;</span>];
+  <span class="hljs-keyword">let</span> html = ejs.<span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;&lt;%= people.join(&quot;, &quot;); %&gt;&#x27;</span>, </span></span><span class="hljs-template-variable">&#123;people: people&#125;</span><span class="language-xml">);
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+                            <p>Use ejs in a script tag.</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="variables"><a class="h-anchor" href="#variables">#</a>Variables</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>&lt;%= var %&gt;</code></td>
+                                        <td>Prints the value of the variable</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;%- var %&gt;</code></td>
+                                        <td>Prints without HTML escaping</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="cli-2"><a class="h-anchor" href="#cli-2">#</a>CLI</h3>
+                        <div class="section">
+                            <p>Render and specify an output file.</p>
+                            <pre><code class="hljs language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">ejs hello.ejs -o hello.html</span>
+</code></pre>
+                            <p>Feed it a template file and a data file</p>
+                            <pre><code class="hljs language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">ejs hello.ejs -f data.json -o hello.html</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comments"><a class="h-anchor" href="#comments">#</a>Comments</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-html">&lt;%# This line will denote a comment %&gt;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-html">&lt;%# This is a multi-line EJS comment.
+    It can span multiple lines,
+    but will not be displayed 
+    in the final HTML output. 
+%&gt;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="method"><a class="h-anchor" href="#method">#</a>Method</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="hljs-keyword">let</span> ejs = require(&#x27;ejs&#x27;);
+<span class="hljs-keyword">let</span> template = ejs.compile(str, options);
+
+template(data);
+<span class="hljs-comment">// =&gt; Rendered HTML string</span>
+
+ejs.render(str, data, options);
+<span class="hljs-comment">// =&gt; Rendered HTML string</span>
+
+ejs.render<span class="hljs-constructor">File(<span class="hljs-params">filename</span>, <span class="hljs-params">data</span>, <span class="hljs-params">options</span>, <span class="hljs-params">function</span>(<span class="hljs-params">err</span>, <span class="hljs-params">str</span>)</span>&#123;
+    <span class="hljs-comment">// str =&gt; Rendered HTML string</span>
+&#125;);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="including-files"><a class="h-anchor" href="#including-files">#</a>Including Files</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-html">&lt;%- include(&#x27;partials/navbar.ejs&#x27;) %&gt;
+</code></pre>
+                            <p>Include a template with data:</p>
+                            <pre><code class="hljs language-html">&lt;% include(&#x27;header&#x27;, &#123; title: &#x27;My Page&#x27; &#125;) %&gt;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  &lt;% users.forEach(function(user)&#123; %&gt;
+    &lt;%- include(&#x27;item&#x27;, &#123;user: user&#125;); %&gt;
+  &lt;% &#125;); %&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+</code></pre>
+                            <p>To include a template, needs a file name option, paths are relative</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-3">
+                <h2 id="docs"><a class="h-anchor" href="#docs">#</a>Docs</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="conditionals"><a class="h-anchor" href="#conditionals">#</a>Conditionals</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-html">&lt;% if (userLoggedIn) &#123; %&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Welcome, &lt;%= username %&gt;!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+&lt;% &#125; else &#123; %&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Please log in.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+&lt;% &#125; %&gt;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="using-loops"><a class="h-anchor" href="#using-loops">#</a>Using loops</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-html">&lt;% if (userLoggedIn) &#123; %&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Welcome, &lt;%= username %&gt;!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+&lt;% &#125; else &#123; %&gt;
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Please log in.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+&lt;% &#125; %&gt;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="custom-delimiters"><a class="h-anchor" href="#custom-delimiters">#</a>Custom delimiters</h3>
+                        <div class="section">
+                            <pre><code class="hljs">let ejs = require(<span class="hljs-string">&#x27;ejs&#x27;</span>),
+    users = [<span class="hljs-string">&#x27;geddy&#x27;</span>, <span class="hljs-string">&#x27;neil&#x27;</span>, <span class="hljs-string">&#x27;alex&#x27;</span>];
+
+<span class="hljs-regexp">//</span> Just one template
+ejs.render(<span class="hljs-string">&#x27;&lt;?= users.join(&quot; | &quot;); ?&gt;&#x27;</span>,
+    &#123;users: users&#125;,
+    &#123;delimiter: <span class="hljs-string">&#x27;?&#x27;</span>&#125;);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">&#x27;geddy | neil | alex&#x27;</span>
+
+<span class="hljs-regexp">//</span> Or globally
+ejs.delimiter = <span class="hljs-string">&#x27;$&#x27;</span>;
+ejs.render(<span class="hljs-string">&#x27;&lt;$= users.join(&quot; | &quot;); $&gt;&#x27;</span>,
+    &#123;users: users&#125;);
+<span class="hljs-regexp">//</span> =&gt; <span class="hljs-string">&#x27;geddy | neil | alex&#x27;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="caching"><a class="h-anchor" href="#caching">#</a>Caching</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="hljs-keyword">let</span> ejs = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;ejs&#x27;</span>),
+LRU = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;lru-cache&#x27;</span>);
+
+<span class="hljs-comment">// LRU cache with 100-item limit</span>
+ejs.<span class="hljs-keyword">cache</span> = LRU(<span class="hljs-number">100</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="custom-file-loader"><a class="h-anchor" href="#custom-file-loader">#</a>Custom file loader</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="hljs-keyword">let</span> ejs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ejs&#x27;</span>);
+<span class="hljs-keyword">let</span> myFileLoader = <span class="hljs-keyword">function</span> (<span class="hljs-params">filePath</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;myFileLoader: &#x27;</span> + fs.<span class="hljs-title function_">readFileSync</span>(filePath);
+&#125;;
+
+ejs.<span class="hljs-property">fileLoader</span> = myFileLoader;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="layouts"><a class="h-anchor" href="#layouts">#</a>Layouts</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="language-xml">&lt;%-</span><span class="language-ruby"> <span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;header&#x27;</span>); </span><span class="language-xml">-%&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>
+  Title
+<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  My page
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+&lt;%-</span><span class="language-ruby"> <span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;footer&#x27;</span>); </span><span class="language-xml">-%&gt;
+</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-2">
+                <h2 id="client-side-support"><a class="h-anchor" href="#client-side-support">#</a>Client-side support</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="example"><a class="h-anchor" href="#example">#</a>Example</h3>
+                        <div class="section">
+                            <pre><code class="hljs"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;output&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;ejs.min.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-keyword">let</span> people = [<span class="hljs-string">&#x27;geddy&#x27;</span>, <span class="hljs-string">&#x27;neil&#x27;</span>, <span class="hljs-string">&#x27;alex&#x27;</span>],
+      html = ejs.<span class="hljs-title function_">render</span>(<span class="hljs-string">&#x27;&lt;%= people.join(&quot;, &quot;); %&gt;&#x27;</span>, </span></span><span class="hljs-template-variable">&#123;people: people&#125;</span><span class="language-xml"><span class="language-javascript">);
+  <span class="hljs-comment">// With jQuery:</span>
+  $(<span class="hljs-string">&#x27;#output&#x27;</span>).<span class="hljs-title function_">html</span>(html);
+  <span class="hljs-comment">// Vanilla JS:</span>
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;output&#x27;</span>).<span class="hljs-property">innerHTML</span> = html;
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="caveats"><a class="h-anchor" href="#caveats">#</a>Caveats</h3>
+                        <div class="section">
+                            <pre><code class="hljs">let str = <span class="hljs-string">&quot;Hello &lt;%= include(&#x27;file&#x27;, &#123;person: &#x27;John&#x27;&#125;); %&gt;&quot;</span>,
+      fn = ejs.compile(str, &#123;client: true&#125;);
+
+fn(data, null, <span class="hljs-keyword">function</span>(path, d)&#123; <span class="hljs-regexp">//</span> include callback
+  <span class="hljs-regexp">//</span> path -&gt; <span class="hljs-string">&#x27;file&#x27;</span>
+  <span class="hljs-regexp">//</span> d -&gt; &#123;person: <span class="hljs-string">&#x27;John&#x27;</span>&#125;
+  <span class="hljs-regexp">//</span> Put your code here
+  <span class="hljs-regexp">//</span> Return the contents of file as a string
+&#125;); <span class="hljs-regexp">//</span> returns rendered string
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-1">
+                <h2 id="options"><a class="h-anchor" href="#options">#</a>Options</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="options-list"><a class="h-anchor" href="#options-list">#</a>Options list</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Option</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>cache</td>
+                                        <td>Compiled functions are cached, requires filename</td>
+                                    </tr>
+                                    <tr>
+                                        <td>filename</td>
+                                        <td>Used by cache to key caches, and for includes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>root</td>
+                                        <td>Set project root for includes with an absolute path (e.g., /file.ejs). Can be an array to try to resolve include from multiple directories.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>views</td>
+                                        <td>An array of paths to use when resolving includes with relative paths.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>context</td>
+                                        <td>Function execution context</td>
+                                    </tr>
+                                    <tr>
+                                        <td>compileDebug</td>
+                                        <td>When false, no debug instrumentation is compiled</td>
+                                    </tr>
+                                    <tr>
+                                        <td>client</td>
+                                        <td>Returns standalone compiled function</td>
+                                    </tr>
+                                    <tr>
+                                        <td>delimiter</td>
+                                        <td>Character to use for inner delimiter, by default '%'</td>
+                                    </tr>
+                                    <tr>
+                                        <td>openDelimiter</td>
+                                        <td>Character to use for opening delimiter, by default '&lt;'</td>
+                                    </tr>
+                                    <tr>
+                                        <td>closeDelimiter</td>
+                                        <td>Character to use for closing delimiter, by default '&gt;'</td>
+                                    </tr>
+                                    <tr>
+                                        <td>debug</td>
+                                        <td>Outputs generated function body</td>
+                                    </tr>
+                                    <tr>
+                                        <td>strict</td>
+                                        <td>When set to <code>true</code>, generated function is in strict mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td>_with</td>
+                                        <td>Whether or not to use with() {} constructs. If false, then the locals will be stored in the locals object. (Implies <code>--strict</code>)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>localsName</td>
+                                        <td>Name to use for the object storing local variables when not using with Defaults to locals</td>
+                                    </tr>
+                                    <tr>
+                                        <td>rmWhitespace</td>
+                                        <td>Remove all safe-to-remove whitespace, including leading and trailing whitespace. It also enables a safer version of -%&gt; line slurping for all scriptlet tags (it does not strip new lines of tags in the middle
+                                            of a line).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>escape</td>
+                                        <td>The escaping function used with &lt;%= construct. It is used in rendering and is .toString()ed in the generation of client functions. (By default escapes XML).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>outputFunctionName</td>
+                                        <td>Set to a string (e.g., 'echo' or 'print') for a function to print output inside scriptlet tags.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>async</td>
+                                        <td>When true, EJS will use an async function for rendering. (Depends on async/await support in the JS runtime.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-1">
+                <h2 id="tags"><a class="h-anchor" href="#tags">#</a>Tags</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="tags-list"><a class="h-anchor" href="#tags-list">#</a>Tags list</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tag</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>&lt;%</td>
+                                        <td>'Scriptlet' tag, for control-flow, no output</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;%_</td>
+                                        <td>'Whitespace Slurping' Scriptlet tag, strips all whitespace before it</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;%=</td>
+                                        <td>Outputs the value into the template (HTML escaped)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;%-</td>
+                                        <td>Outputs the unescaped value into the template</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;%#</td>
+                                        <td>Comment tag, no execution, no output</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lt;%%</td>
+                                        <td>Outputs a literal '&lt;%'</td>
+                                    </tr>
+                                    <tr>
+                                        <td>%&gt;</td>
+                                        <td>Plain ending tag</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-%&gt;</td>
+                                        <td>Trim-mode ('newline slurp') tag, trims following newline</td>
+                                    </tr>
+                                    <tr>
+                                        <td>_%&gt;</td>
+                                        <td>'Whitespace Slurping' ending tag, removes all whitespace after it</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-1">
+                <h2 id="cli-3"><a class="h-anchor" href="#cli-3">#</a>Cli</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="cli-list"><a class="h-anchor" href="#cli-list">#</a>Cli list</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Option</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>cache</td>
+                                        <td>Compiled functions are cached, requires filename</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-o / --output-file FILE</td>
+                                        <td>Write the rendered output to FILE rather than stdout.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-f / --data-file FILE</td>
+                                        <td>Must be JSON-formatted. Use parsed input from FILE as data for rendering.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-i / --data-input STRING</td>
+                                        <td>Must be JSON-formatted and URI-encoded. Use parsed input from STRING as data for rendering.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-m / --delimiter CHARACTER</td>
+                                        <td>Use CHARACTER with angle brackets for open/close (defaults to %).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-p / --open-delimiter CHARACTER</td>
+                                        <td>Use CHARACTER instead of left angle bracket to open.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-c / --close-delimiter CHARACTER</td>
+                                        <td>Use CHARACTER instead of right angle bracket to close.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-s / --strict</td>
+                                        <td>When set to <code>true</code>, generated function is in strict mode</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-n / --no-with</td>
+                                        <td>Use 'locals' object for vars rather than using <code>with</code> (implies --strict).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-l / --locals-name</td>
+                                        <td>Name to use for the object storing local variables when not using <code>with</code>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-w / --rm-whitespace</td>
+                                        <td>Remove all safe-to-remove whitespace, including leading and trailing whitespace.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-d / --debug</td>
+                                        <td>Outputs generated function body</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-h / --help</td>
+                                        <td>Display this help message.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-V/v / --version</td>
+                                        <td>Display the EJS version.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>Examples of use :</p>
+                            <pre><code class="hljs"><span class="hljs-meta prompt_">$ </span><span class="language-bash">ejs -p [ -c ] ./template_file.ejs -o ./output.html</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">ejs ./test/fixtures/user.ejs name=Lerxst</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">ejs -n -l _ ./some_template.ejs -f ./data_file.json</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>

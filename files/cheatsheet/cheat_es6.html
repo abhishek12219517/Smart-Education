@@ -1,0 +1,824 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="app:pageurl" content="/">
+    <title>ES6 Cheat Sheet</title>
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">ES6</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>A cheatsheet of what's new in JavaScript for ES2015, ES2016, ES2017, ES2018 and beyond</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="block-scoped"><a class="h-anchor" href="#block-scoped">#</a>Block-scoped</h3>
+                        <div class="section">
+                            <h4 id="let"><a class="h-anchor" href="#let">#</a>Let</h4>
+                            <pre><code 2,4="" class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span> () &#123;
+  <span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) &#123;
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">1</span> <span class="hljs-comment">// only inside this `if`</span>
+  &#125;
+&#125;
+</code></pre>
+                            <h4 id="const"><a class="h-anchor" href="#const">#</a>Const</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> a = <span class="hljs-number">1</span>
+</code></pre>
+                            <p><code>let</code> is the new <code>var</code>. Constants (<code>const</code>) work just like <code>let</code>, but cannot be reassigned. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#let--const">Let and const</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="template-strings"><a class="h-anchor" href="#template-strings">#</a>Template Strings</h3>
+                        <div class="section">
+                            <h4 id="interpolation"><a class="h-anchor" href="#interpolation">#</a>Interpolation</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> message = <span class="hljs-string">`Hello <span class="hljs-subst">$&#123;name&#125;</span>`</span>
+</code></pre>
+                            <h4 id="multi-line-string"><a class="h-anchor" href="#multi-line-string">#</a>Multi-line string</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">`
+hello
+the world
+`</span>
+</code></pre>
+                            <p>Templates and multiline strings. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#template-strings">template strings</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="binary-and-octal-literals"><a class="h-anchor" href="#binary-and-octal-literals">#</a>Binary and octal literals</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">let</span> bin = <span class="hljs-number">0b1010010</span>
+<span class="hljs-keyword">let</span> oct = <span class="hljs-number">0o755</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#binary-and-octal-literals">Binary and Octal Literals</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="exponential-operator"><a class="h-anchor" href="#exponential-operator">#</a>Exponential Operator</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">const</span> byte = <span class="hljs-number">2</span> **<span class="hljs-number">8</span>
+</code></pre>
+                            <p>Same as: Math.pow(2, 8)</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="new-library-additions"><a class="h-anchor" href="#new-library-additions">#</a>New library additions</h3>
+                        <div class="section">
+                            <h4 id="new-string-methods"><a class="h-anchor" href="#new-string-methods">#</a>New string methods</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-string">&quot;hello&quot;</span>.<span class="hljs-title function_">repeat</span>(<span class="hljs-number">3</span>)
+<span class="hljs-string">&quot;hello&quot;</span>. <span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;ll&quot;</span>)
+<span class="hljs-string">&quot;hello&quot;</span>. <span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;he&quot;</span>)
+<span class="hljs-string">&quot;hello&quot;</span>.<span class="hljs-title function_">padStart</span>(<span class="hljs-number">8</span>)     <span class="hljs-comment">// &quot;hello&quot;</span>
+<span class="hljs-string">&quot;hello&quot;</span>.<span class="hljs-title function_">padEnd</span>(<span class="hljs-number">8</span>)       <span class="hljs-comment">// &quot;hello&quot;</span>
+<span class="hljs-string">&quot;hello&quot;</span>.<span class="hljs-title function_">padEnd</span>(<span class="hljs-number">8</span>, <span class="hljs-string">&#x27;!&#x27;</span>)  <span class="hljs-comment">// hello!!!</span>
+<span class="hljs-string">&quot;\u1E9B\u0323&quot;</span>.<span class="hljs-title function_">normalize</span>(<span class="hljs-string">&quot;NFC&quot;</span>)
+</code></pre>
+                            <h4 id="new-number-methods"><a class="h-anchor" href="#new-number-methods">#</a>New Number Methods</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-title class_">Number</span>.<span class="hljs-property">EPSILON</span>
+<span class="hljs-title class_">Number</span>.<span class="hljs-title function_">isInteger</span>(<span class="hljs-title class_">Infinity</span>) <span class="hljs-comment">// false</span>
+<span class="hljs-title class_">Number</span>.<span class="hljs-built_in">isNaN</span>(<span class="hljs-string">&quot;NaN&quot;</span>)         <span class="hljs-comment">// false</span>
+</code></pre>
+                            <h4 id="new-math-methods"><a class="h-anchor" href="#new-math-methods">#</a>New Math methods</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-title class_">Math</span>.<span class="hljs-title function_">acosh</span>(<span class="hljs-number">3</span>)    <span class="hljs-comment">// 1.762747174039086</span>
+<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">hypot</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>)  <span class="hljs-comment">// 5</span>
+<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">imul</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>) -<span class="hljs-number">1</span>, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">pow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">32</span>) -<span class="hljs-number">2</span>) <span class="hljs-comment">// 2</span>
+</code></pre>
+                            <h4 id="new-array-methods"><a class="h-anchor" href="#new-array-methods">#</a>New Array methods</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-comment">//return a real array</span>
+<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&quot;*&quot;</span>))
+<span class="hljs-comment">//similar to new Array(...), but without the special single-argument behavior</span>
+<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#math--number--string--object-apis">New library additions</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="kind"><a class="h-anchor" href="#kind">#</a>kind</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Circle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Shape</span> &#123;
+</code></pre>
+                            <h4 id="constructor"><a class="h-anchor" href="#constructor">#</a>Constructor</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-title function_">constructor</span> (radius) &#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span> = radius
+&#125;
+</code></pre>
+                            <h4 id="method"><a class="h-anchor" href="#method">#</a>method</h4>
+                            <pre><code 1="" class="language-js">getArea () &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span> *<span class="hljs-number">2</span> *<span class="hljs-variable language_">this</span>.<span class="hljs-property">radius</span>
+&#125;
+</code></pre>
+                            <h4 id="call-the-superclass-method"><a class="h-anchor" href="#call-the-superclass-method">#</a>Call the superclass method</h4>
+                            <pre><code 2="" class="language-js"><span class="hljs-title function_">expand</span>(<span class="hljs-params">n</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">expand</span>(n) *<span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span>
+&#125;
+</code></pre>
+                            <h4 id="static-methods"><a class="h-anchor" href="#static-methods">#</a>Static methods</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">static</span> <span class="hljs-title function_">createFromDiameter</span>(<span class="hljs-params">diameter</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Circle</span>(diameter /<span class="hljs-number">2</span>)
+&#125;
+</code></pre>
+                            <p>Syntactic sugar for prototypes. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#classes">classes</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="private-class"><a class="h-anchor" href="#private-class">#</a>Private class</h3>
+                        <div class="section">
+                            <p>The javascript default field is public (<code>public</code>), if you need to indicate private, you can use (<code>#</code>)</p>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> &#123;
+  #name;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">name</span>) &#123;
+    <span class="hljs-variable language_">this</span>.#name = name;
+  &#125;
+  <span class="hljs-title function_">printName</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-comment">// Only private fields can be called inside the class</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Your name is <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.#name&#125;</span>`</span>)
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>(<span class="hljs-string">&quot;putty&quot;</span>)
+<span class="hljs-comment">//console.log(this.#name)</span>
+<span class="hljs-comment">//Private identifiers are not allowed outside class bodies.</span>
+dog.<span class="hljs-title function_">printName</span>()
+</code></pre>
+                            <h4 id="static-private-class"><a class="h-anchor" href="#static-private-class">#</a>Static private class</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ClassWithPrivate</span> &#123;
+  <span class="hljs-keyword">static</span> #privateStaticField;
+<span class="hljs-keyword">static</span> #privateStaticFieldWithInitializer = <span class="hljs-number">42</span>;
+
+  <span class="hljs-keyword">static</span> #<span class="hljs-title function_">privateStaticMethod</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-comment">// …</span>
+  &#125;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="promises"><a class="h-anchor" href="#promises">#</a>Promises</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="make-the-commitment"><a class="h-anchor" href="#make-the-commitment">#</a>make the commitment</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">if</span> (ok) &#123; <span class="hljs-title function_">resolve</span>(result) &#125;
+  <span class="hljs-keyword">else</span> &#123; <span class="hljs-title function_">reject</span>(error) &#125;
+&#125;)
+</code></pre>
+                            <p>for asynchronous programming. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#promises">Promises</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="using-promises"><a class="h-anchor" href="#using-promises">#</a>Using Promises</h3>
+                        <div class="section">
+                            <pre><code 2,3="" class="language-js">promise
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123; ··· &#125;)
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> &#123; ··· &#125;)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="using-promises-in-finally"><a class="h-anchor" href="#using-promises-in-finally">#</a>Using Promises in finally</h3>
+                        <div class="section">
+                            <pre><code 4="" class="language-js">promise
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123; ··· &#125;)
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> &#123; ··· &#125;)
+  .<span class="hljs-title function_">finally</span>(<span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-comment">/*logic independent of success/error */</span>
+  &#125;)
+</code></pre>
+                            <p>The handler is called when the promise is fulfilled or rejected</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="promise-function"><a class="h-anchor" href="#promise-function">#</a>Promise function</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(···)
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>(···)
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(···)
+<span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(···)
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="async-await"><a class="h-anchor" href="#async-await">#</a>Async-await</h3>
+                        <div class="section">
+                            <pre><code 2,3="" class="language-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">run</span> () &#123;
+  <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getUser</span>()
+  <span class="hljs-keyword">const</span> tweets = <span class="hljs-keyword">await</span> <span class="hljs-title function_">getTweets</span>(user)
+  <span class="hljs-keyword">return</span> [user, tweets]
+&#125;
+</code></pre>
+                            <p><code>async</code> functions are another way to use functions. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">Async Function</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="destructuring"><a class="h-anchor" href="#destructuring">#</a>Destructuring</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="destructuring-assignment"><a class="h-anchor" href="#destructuring-assignment">#</a>Destructuring assignment</h3>
+                        <div class="section">
+                            <h4 id="arrays"><a class="h-anchor" href="#arrays">#</a>Arrays</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">const</span> [first, last] = [<span class="hljs-string">&#x27;Nikola&#x27;</span>, <span class="hljs-string">&#x27;Tesla&#x27;</span>]
+</code></pre>
+                            <h4 id="objects"><a class="h-anchor" href="#objects">#</a>Objects</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">let</span> &#123;title, author&#125; = &#123;
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;The Silkworm&#x27;</span>,
+  <span class="hljs-attr">author</span>: <span class="hljs-string">&#x27;R. Galbraith&#x27;</span>
+&#125;
+</code></pre>
+                            <p>Supports matching arrays and objects. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#destructuring">Destructuring</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="defaults"><a class="h-anchor" href="#defaults">#</a>Defaults</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> scores = [<span class="hljs-number">22</span>, <span class="hljs-number">33</span>]
+<span class="hljs-keyword">const</span> [math = <span class="hljs-number">50</span>, sci = <span class="hljs-number">50</span>, arts = <span class="hljs-number">50</span>] = scores
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-comment">//Result:</span>
+<span class="hljs-comment">//math === 22, sci === 33, arts === 50</span>
+</code></pre>
+                            <p>A default value can be assigned when destructuring an array or object</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="function-parameters"><a class="h-anchor" href="#function-parameters">#</a>Function parameters</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">&#123; name, greeting &#125;</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">$&#123;greeting&#125;</span>, <span class="hljs-subst">$&#123;name&#125;</span>!`</span>)
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-title function_">greet</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Larry&#x27;</span>, <span class="hljs-attr">greeting</span>: <span class="hljs-string">&#x27;Ahoy&#x27;</span> &#125;)
+</code></pre>
+                            <p>Destructuring of objects and arrays can also be done in function parameters</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="defaults-2"><a class="h-anchor" href="#defaults-2">#</a>Defaults</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">&#123; name = <span class="hljs-string">&#x27;Rauno&#x27;</span> &#125; = &#123;&#125;</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hi <span class="hljs-subst">$&#123;name&#125;</span>!`</span>);
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-title function_">greet</span>() <span class="hljs-comment">// Hi Rauno!</span>
+<span class="hljs-title function_">greet</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Larry&#x27;</span> &#125;) <span class="hljs-comment">// Hi Larry!</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="reassign-keys"><a class="h-anchor" href="#reassign-keys">#</a>Reassign keys</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">printCoordinates</span>(<span class="hljs-params">&#123; left: x, top: y &#125;</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`x: <span class="hljs-subst">$&#123;x&#125;</span>, y: <span class="hljs-subst">$&#123;y&#125;</span>`</span>)
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-title function_">printCoordinates</span>(&#123; <span class="hljs-attr">left</span>: <span class="hljs-number">25</span>, <span class="hljs-attr">top</span>: <span class="hljs-number">90</span> &#125;)
+</code></pre>
+                            <p>This example assigns <code>x</code> to the value of the <code>left</code> key</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="loop"><a class="h-anchor" href="#loop">#</a>Loop</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> &#123;title, artist&#125; <span class="hljs-keyword">of</span> songs) &#123;
+  ···
+&#125;
+</code></pre>
+                            <p>Assignment expressions also work in loops</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="object-deconstruction"><a class="h-anchor" href="#object-deconstruction">#</a>Object Deconstruction</h3>
+                        <div class="section">
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">const</span> &#123; id, ...detail &#125; = song;
+</code></pre>
+                            <p>Use the <code>rest(...)</code> operator to extract some keys individually and the rest of the keys in the object</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="spread-operator-spread"><a class="h-anchor" href="#spread-operator-spread">#</a>Spread operator Spread</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="object-extensions"><a class="h-anchor" href="#object-extensions">#</a>Object Extensions</h3>
+                        <div class="section">
+                            <h4 id="with-object-extensions"><a class="h-anchor" href="#with-object-extensions">#</a>with object extensions</h4>
+                            <pre><code 2="" class="language-js"><span class="hljs-keyword">const</span> options = &#123;
+  ...defaults,
+  <span class="hljs-attr">visible</span>: <span class="hljs-literal">true</span>
+&#125;
+</code></pre>
+                            <h4 id="no-object-extension"><a class="h-anchor" href="#no-object-extension">#</a>No object extension</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> options = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(
+  &#123;&#125;, defaults,
+  &#123; <span class="hljs-attr">visible</span>: <span class="hljs-literal">true</span> &#125;)
+</code></pre>
+                            <p>The object spread operator allows you to build new objects from other objects. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Object Spread</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="array-expansion"><a class="h-anchor" href="#array-expansion">#</a>Array Expansion</h3>
+                        <div class="section">
+                            <h4 id="with-array-extension"><a class="h-anchor" href="#with-array-extension">#</a>with array extension</h4>
+                            <pre><code 2,3="" class="language-js"><span class="hljs-keyword">const</span> users = [
+  ...admins,
+  ...editors,
+  <span class="hljs-string">&#x27;rstacruz&#x27;</span>
+]
+</code></pre>
+                            <h4 id="no-array-expansion"><a class="h-anchor" href="#no-array-expansion">#</a>No array expansion</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> users = admins
+  .<span class="hljs-title function_">concat</span>(editors)
+  .<span class="hljs-title function_">concat</span>([ <span class="hljs-string">&#x27;rstacruz&#x27;</span> ])
+</code></pre>
+                            <p>The spread operator allows you to build new arrays in the same way. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Spread operator</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="functions"><a class="h-anchor" href="#functions">#</a>Functions</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="function-parameters-2"><a class="h-anchor" href="#function-parameters-2">#</a>Function parameters</h3>
+                        <div class="section">
+                            <h4 id="default-parameters"><a class="h-anchor" href="#default-parameters">#</a>Default parameters</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">greet</span> (name = <span class="hljs-string">&#x27;Jerry&#x27;</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">$&#123;name&#125;</span>`</span>
+&#125;
+</code></pre>
+                            <h4 id="rest-parameters"><a class="h-anchor" href="#rest-parameters">#</a>Rest parameters</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params">x, ...y</span>) &#123;
+  <span class="hljs-comment">// y is an array</span>
+  <span class="hljs-keyword">return</span> x * y.<span class="hljs-property">length</span>
+&#125;
+</code></pre>
+                            <h4 id="extensions"><a class="h-anchor" href="#extensions">#</a>Extensions</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-title function_">fn</span>(...[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+<span class="hljs-comment">//same as fn(1, 2, 3)</span>
+</code></pre>
+                            <p>Default (default), rest, spread (extension). See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#default--rest--spread">function parameters</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="arrow-function"><a class="h-anchor" href="#arrow-function">#</a>Arrow function</h3>
+                        <div class="section">
+                            <h4 id="arrow-functions"><a class="h-anchor" href="#arrow-functions">#</a>Arrow functions</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  ···
+&#125;)
+</code></pre>
+                            <h4 id="with-parameters"><a class="h-anchor" href="#with-parameters">#</a>with parameters</h4>
+                            <pre><code 1="" class="language-js"><span class="hljs-title function_">readFile</span>(<span class="hljs-string">&#x27;text.txt&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">err, data</span>) =&gt;</span> &#123;
+  ...
+&#125;)
+</code></pre>
+                            <h4 id="implicit-return"><a class="h-anchor" href="#implicit-return">#</a>implicit return</h4>
+                            <pre><code 1,4,5,6="" class="language-js">arr.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> n*<span class="hljs-number">2</span>)
+<span class="hljs-comment">//no curly braces = implicit return</span>
+<span class="hljs-comment">//Same as: arr.map(function (n) &#123; return n*2 &#125;)</span>
+arr.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> (&#123;
+  <span class="hljs-attr">result</span>: n*<span class="hljs-number">2</span>
+&#125;))
+<span class="hljs-comment">//Implicitly returning an object requires parentheses around the object</span>
+</code></pre>
+                            <p>Like a function, but preserves <code>this</code>. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#arrows-and-lexical-this">Arrow functions</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="parameter-setting-default-value"><a class="h-anchor" href="#parameter-setting-default-value">#</a>Parameter setting default value</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">log</span>(<span class="hljs-params">x, y = <span class="hljs-string">&#x27;World&#x27;</span></span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x, y);
+&#125;
+
+<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello&#x27;</span>) <span class="hljs-comment">// Hello World</span>
+<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs-string">&#x27;China&#x27;</span>) <span class="hljs-comment">// Hello China</span>
+<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>) <span class="hljs-comment">// Hello</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="used-in-conjunction-with-destructuring-assignment-defaults"><a class="h-anchor" href="#used-in-conjunction-with-destructuring-assignment-defaults">#</a>Used in conjunction with destructuring assignment defaults</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">&#123;x, y = <span class="hljs-number">5</span>&#125; = &#123;&#125;</span>) &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x, y);
+&#125;
+
+<span class="hljs-title function_">foo</span>() <span class="hljs-comment">// undefined 5</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="name-attribute"><a class="h-anchor" href="#name-attribute">#</a>name attribute</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params"></span>) &#123;&#125;
+foo.<span class="hljs-property">name</span> <span class="hljs-comment">// &quot;foo&quot;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="length-property"><a class="h-anchor" href="#length-property">#</a>length property</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">foo</span>(<span class="hljs-params">a, b</span>)&#123;&#125;
+foo.<span class="hljs-property">length</span> <span class="hljs-comment">// 2</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="objects-2"><a class="h-anchor" href="#objects-2">#</a>Objects</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="shorthand-syntax"><a class="h-anchor" href="#shorthand-syntax">#</a>Shorthand Syntax</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123; hello, bye &#125;
+</code></pre>
+                            <p>same below:</p>
+                            <pre><code class="hljs language-js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">hello</span>: hello, <span class="hljs-attr">bye</span>: bye
+&#125;
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#enhanced-object-literals">Object Literals Enhanced</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="method-2"><a class="h-anchor" href="#method-2">#</a>method</h3>
+                        <div class="section">
+                            <pre><code 2="" class="language-js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">App</span> = &#123;
+  start () &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;running&#x27;</span>)
+  &#125;
+&#125;
+<span class="hljs-comment">//Same as: App = &#123; start: function () &#123;···&#125; &#125;</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#enhanced-object-literals">Object Literals Enhanced</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="getters-and-setters"><a class="h-anchor" href="#getters-and-setters">#</a>Getters and setters</h3>
+                        <div class="section">
+                            <pre><code 2,5="" class="language-js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">App</span> = &#123;
+  get closed () &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">status</span> === <span class="hljs-string">&#x27;closed&#x27;</span>
+  &#125;,
+  set closed (value) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">status</span> = value ? <span class="hljs-string">&#x27;closed&#x27;</span> : <span class="hljs-string">&#x27;open&#x27;</span>
+  &#125;
+&#125;
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#enhanced-object-literals">Object Literals Enhanced</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="computed-property-name"><a class="h-anchor" href="#computed-property-name">#</a>Computed property name</h3>
+                        <div class="section">
+                            <pre><code 3="" class="language-js"><span class="hljs-keyword">let</span> event = <span class="hljs-string">&#x27;click&#x27;</span>
+<span class="hljs-keyword">let</span> handlers = &#123;
+  [<span class="hljs-string">`on<span class="hljs-subst">$&#123;event&#125;</span>`</span>]: <span class="hljs-literal">true</span>
+&#125;
+<span class="hljs-comment">//Same as: handlers = &#123; &#x27;onclick&#x27;: true &#125;</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#enhanced-object-literals">Object Literals Enhanced</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="extract-value"><a class="h-anchor" href="#extract-value">#</a>Extract value</h3>
+                        <div class="section">
+                            <pre><code 3,5="" class="language-js"><span class="hljs-keyword">const</span> fatherJS = &#123; <span class="hljs-attr">age</span>: <span class="hljs-number">57</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Zhang San&quot;</span> &#125;
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(fatherJS)
+<span class="hljs-comment">//[57, &quot;Zhang San&quot;]</span>
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(fatherJS)
+<span class="hljs-comment">//[[&quot;age&quot;, 57], [&quot;name&quot;, &quot;Zhang San&quot;]]</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="modules-module"><a class="h-anchor" href="#modules-module">#</a>Modules module</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="imports-import"><a class="h-anchor" href="#imports-import">#</a>Imports import</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;helpers&#x27;</span>
+<span class="hljs-comment">//aka: require(&#x27;···&#x27;)</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Express</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;express&#x27;</span>
+<span class="hljs-comment">//aka: const Express = require(&#x27;···&#x27;).default || require(&#x27;···&#x27;)</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> &#123; indent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;helpers&#x27;</span>
+<span class="hljs-comment">//aka: const indent = require(&#x27;···&#x27;).indent</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> *<span class="hljs-keyword">as</span> <span class="hljs-title class_">Helpers</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;helpers&#x27;</span>
+<span class="hljs-comment">//aka: const Helpers = require(&#x27;···&#x27;)</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> &#123; indentSpaces <span class="hljs-keyword">as</span> indent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;helpers&#x27;</span>
+<span class="hljs-comment">//aka: const indent = require(&#x27;···&#x27;).indentSpaces</span>
+</code></pre>
+                            <p><code>import</code> is the new <code>require()</code>. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#modules">Module imports</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="exports-export"><a class="h-anchor" href="#exports-export">#</a>Exports export</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123; ··· &#125;
+<span class="hljs-comment">//aka: module.exports.default = ···</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">mymethod</span> () &#123; ··· &#125;
+<span class="hljs-comment">//aka: module.exports.mymethod = ···</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> pi = <span class="hljs-number">3.14159</span>
+<span class="hljs-comment">//aka: module.exports.pi = ···</span>
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> firstName = <span class="hljs-string">&#x27;Michael&#x27;</span>;
+<span class="hljs-keyword">const</span> lastName = <span class="hljs-string">&#x27;Jackson&#x27;</span>;
+<span class="hljs-keyword">const</span> year = <span class="hljs-number">1958</span>;
+<span class="hljs-keyword">export</span> &#123; firstName, lastName, year &#125;;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">export</span> *<span class="hljs-keyword">from</span> <span class="hljs-string">&quot;lib/math&quot;</span>;
+</code></pre>
+                            <p><code>export</code> is the new <code>module.exports</code>. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#modules">Module exports</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="as-keyword-renaming"><a class="h-anchor" href="#as-keyword-renaming">#</a><code>as</code> keyword renaming</h3>
+                        <div class="section">
+                            <pre><code 2,8,12-14="" class="language-js"><span class="hljs-keyword">import</span> &#123;
+  lastName <span class="hljs-keyword">as</span> surname <span class="hljs-comment">// import rename</span>
+&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./profile.js&#x27;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">v1</span>(<span class="hljs-params"></span>) &#123; ... &#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">v2</span>(<span class="hljs-params"></span>) &#123; ... &#125;
+
+<span class="hljs-keyword">export</span> &#123; v1 <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span> &#125;;
+<span class="hljs-comment">//Equivalent to export default v1;</span>
+
+<span class="hljs-keyword">export</span> &#123;
+  v1 <span class="hljs-keyword">as</span> streamV1, <span class="hljs-comment">// export rename</span>
+  v2 <span class="hljs-keyword">as</span> streamV2, <span class="hljs-comment">// export rename</span>
+  v2 <span class="hljs-keyword">as</span> streamLatestVersion <span class="hljs-comment">// export rename</span>
+&#125;;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="dynamically-load-modules"><a class="h-anchor" href="#dynamically-load-modules">#</a>Dynamically load modules</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js">button.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-params">event</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./dialogBox.js&#x27;</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">dialogBox</span> =&gt;</span> &#123;
+      dialogBox. <span class="hljs-title function_">open</span>();
+    &#125;)
+    .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+      <span class="hljs-comment">/*Error handling */</span>
+    &#125;)
+&#125;);
+</code></pre>
+                            <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/tc39/proposal-dynamic-import">ES2020 Proposal</a> introduce <code>import()</code> function</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="import-allows-module-paths-to-be-dynamically-generated"><a class="h-anchor" href="#import-allows-module-paths-to-be-dynamically-generated">#</a>import() allows module paths to be dynamically generated</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> main = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;main&#x27;</span>)
+
+<span class="hljs-keyword">import</span>(<span class="hljs-string">`./modules/<span class="hljs-subst">$&#123;someVariable&#125;</span>.js`</span>)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">module</span> =&gt;</span> &#123;
+    <span class="hljs-variable language_">module</span>.<span class="hljs-title function_">loadPageInto</span>(main);
+  &#125;)
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;
+    main.<span class="hljs-property">textContent</span> = err.<span class="hljs-property">message</span>;
+  &#125;);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="import-meta"><a class="h-anchor" href="#import-meta">#</a>import.meta</h3>
+                        <div class="section">
+                            <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/tc39/proposal-import-meta">ES2020</a> Added a meta property <code>import.meta</code> to the <code>import</code> command, which returns
+                                the meta information of the current module</p>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">new</span> <span class="hljs-title function_">URL</span>(<span class="hljs-string">&#x27;data.txt&#x27;</span>, <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">url</span>)
+</code></pre>
+                            <p>In the Node.js environment, <code>import.meta.url</code> always returns a local path, that is, a string of the <code>file:URL</code> protocol, such as <code>file:/// home/user/foo.js</code></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="import-assertions"><a class="h-anchor" href="#import-assertions">#</a>Import Assertions</h3>
+                        <div class="section">
+                            <h4 id="static-import"><a class="h-anchor" href="#static-import">#</a>static import</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">import</span> json <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./package.json&quot;</span> assert &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;json&quot;</span>&#125;
+<span class="hljs-comment">//Import all objects in the json file</span>
+</code></pre>
+                            <h4 id="dynamic-import"><a class="h-anchor" href="#dynamic-import">#</a>Dynamic Import</h4>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">const</span> json =
+     <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&quot;./package.json&quot;</span>, &#123; <span class="hljs-attr">assert</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;json&quot;</span> &#125; &#125;)
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="generators"><a class="h-anchor" href="#generators">#</a>Generators</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="generator-function"><a class="h-anchor" href="#generator-function">#</a>Generator function</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span>*idMaker () &#123;
+  <span class="hljs-keyword">let</span> id = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123; <span class="hljs-keyword">yield</span> id++ &#125;
+&#125;
+</code></pre>
+                            <hr>
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">let</span> gen = <span class="hljs-title function_">idMaker</span>()
+gen.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span> <span class="hljs-comment">// → 0</span>
+gen.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span> <span class="hljs-comment">// → 1</span>
+gen.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span> <span class="hljs-comment">// → 2</span>
+</code></pre>
+                            <p>it's complicated. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#generators">Generators</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="for-of-iterator"><a class="h-anchor" href="#for-of-iterator">#</a>For..of + iterator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">let</span> fibonacci = &#123;
+  [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]() &#123;
+    <span class="hljs-keyword">let</span> pre = <span class="hljs-number">0</span>, cur = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> &#123;
+      <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) &#123;
+        [pre, cur] = [cur, pre + cur];
+<span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">value</span>: cur &#125;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> n <span class="hljs-keyword">of</span> fibonacci) &#123;
+  <span class="hljs-comment">// truncate sequence at 1000</span>
+  <span class="hljs-keyword">if</span> (n &gt; <span class="hljs-number">1000</span>) <span class="hljs-keyword">break</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(n);
+&#125;
+</code></pre>
+                            <p>For iterating over generators and arrays. See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/learn-es2015/#iterators--forof">For..of iteration</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="relationship-with-iterator-interface"><a class="h-anchor" href="#relationship-with-iterator-interface">#</a>Relationship with Iterator interface</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">var</span> gen = &#123;&#125;;
+gen[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>] = <span class="hljs-keyword">function</span>*() &#123;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+&#125;;
+
+[...gen] <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
+</code></pre>
+                            <p>The <code>Generator</code> function is assigned to the <code>Symbol.iterator</code> property, so that the <code>gen</code> object has the <code>Iterator</code> interface, which can be traversed by the <code>...</code> operator</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="symbol-iterator-property"><a class="h-anchor" href="#symbol-iterator-property">#</a>Symbol.iterator property</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-js"><span class="hljs-keyword">function</span>*<span class="hljs-title function_">gen</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">/*some code */</span>&#125;
+<span class="hljs-keyword">var</span> g = <span class="hljs-title function_">gen</span>();
+
+g[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]() === g <span class="hljs-comment">// true</span>
+</code></pre>
+                            <p><code>gen</code> is a <code>Generator</code> function, calling it will generate a traverser object <code>g</code>. Its <code>Symbol.iterator</code> property, which is also an iterator object generation function, returns itself
+                                after execution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="see-also"><a class="h-anchor" href="#see-also">#</a>see also</h2>
+                <div class="h3-wrap-list">
+                    <ul>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://babeljs.io/docs/en/learn/">Learn ES2015</a><em>(babeljs.io)</em></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lukehoban/es6features#readme">ECMAScript 6 Features Overview</a> <em>(github.com)</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>

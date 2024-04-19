@@ -1,0 +1,1358 @@
+<!DOCTYPE HTML>
+<html class="scrollbar" translate="no">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="content-language" content="en-gb">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>PHP Cheat Sheet</title>
+    <meta name="keywords" content="reference,cheatsheet,code table,snippets,linux,web">
+    <link rel="stylesheet" href="../../css/cheatsheet.css">
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            let html = document.documentElement.classList;
+            html.toggle('dark')
+        }
+    </script>
+    
+</head>
+
+<body class="bg-slate-100 dark:bg-slate-900">
+    
+    <div class="mx-auto flex flex-wrap md:py-5 flex-col md:flex-row items-center">
+        <div class="flex flex-col w-full mx-auto text-center my-8">
+            <div class="max-container w-full">
+                <h1 class="text-5xl mb-4"> <span class="text-slate-700 dark:text-slate-300 font-light">PHP</span> <span class="text-slate-400 dark:text-slate-500 font-extralight hidden md:inline">cheatsheet</span></h1>
+                <div class="lg:w-3/5 mx-auto intro leading-relaxed text-slate-600">
+                    <p>This <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/">PHP</a> cheat sheet provides a reference for quickly looking up the correct syntax for the code you use most frequently.</p>
+                </div>
+            </div>
+        </div>
+        <div id="mdLayout" class="mdLayout w-full max-container">
+            <div data-pw-desk="leaderboard_btf" id="pwDeskLbBtf1"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskLbBtf1")
+                })
+            </script>
+            <div class="h2-wrap">
+                <h2 id="getting-started"><a class="h-anchor" href="#getting-started">#</a>Getting Started</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="hello-php"><a class="h-anchor" href="#hello-php">#</a>hello.php</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">// begin with a PHP open tag.</span>
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World\n&quot;</span>;
+<span class="hljs-keyword">print</span>(<span class="hljs-string">&quot;Hello quickref.me&quot;</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+                            <p>PHP run command</p>
+                            <pre><code class="hljs language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">php hello.php</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="variables"><a class="h-anchor" href="#variables">#</a>Variables</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$boolean1</span> = <span class="hljs-literal">true</span>;
+<span class="hljs-variable">$boolean2</span> = True;
+
+<span class="hljs-variable">$int</span> = <span class="hljs-number">12</span>;
+<span class="hljs-variable">$float</span> = <span class="hljs-number">3.1415926</span>;
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$float</span>);  <span class="hljs-comment">// Delete variable</span>
+
+<span class="hljs-variable">$str1</span> = <span class="hljs-string">&quot;How are you?&quot;</span>;
+<span class="hljs-variable">$str2</span> = <span class="hljs-string">&#x27;Fine, thanks&#x27;</span>;
+</code></pre>
+                            <p>See: <a href="#php-types">Types</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="strings"><a class="h-anchor" href="#strings">#</a>Strings</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$url</span> = <span class="hljs-string">&quot;quickref.me&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;I&#x27;m learning PHP at <span class="hljs-subst">$url</span>&quot;</span>;
+
+<span class="hljs-comment">// Concatenate strings</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;I&#x27;m learning PHP at &quot;</span> . <span class="hljs-variable">$url</span>;
+
+<span class="hljs-variable">$hello</span> = <span class="hljs-string">&quot;Hello, &quot;</span>;
+<span class="hljs-variable">$hello</span> .= <span class="hljs-string">&quot;World!&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$hello</span>;   <span class="hljs-comment"># =&gt; Hello, World!</span>
+</code></pre>
+                            <p>See: <a href="#php-strings">Strings</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="arrays"><a class="h-anchor" href="#arrays">#</a>Arrays</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$num</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">9</span>];
+<span class="hljs-variable">$num</span>[<span class="hljs-number">5</span>] = <span class="hljs-number">11</span>;
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$num</span>[<span class="hljs-number">2</span>]);    <span class="hljs-comment">// Delete variable</span>
+<span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$num</span>);     <span class="hljs-comment"># =&gt; 1 3 7 9 11</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$num</span>);  <span class="hljs-comment"># =&gt; 5</span>
+</code></pre>
+                            <p>See: <a href="#php-arrays">Arrays</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="operators"><a class="h-anchor" href="#operators">#</a>Operators</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$x</span> = <span class="hljs-number">1</span>;
+<span class="hljs-variable">$y</span> = <span class="hljs-number">2</span>;
+
+<span class="hljs-variable">$sum</span> = <span class="hljs-variable">$x</span> + <span class="hljs-variable">$y</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$sum</span>;   <span class="hljs-comment"># =&gt; 3</span>
+</code></pre>
+                            <p>See: <a href="#php-operators">Operators</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-3">
+                        <h3 id="include"><a class="h-anchor" href="#include">#</a>Include</h3>
+                        <div class="section">
+                            <h4 id="vars-php"><a class="h-anchor" href="#vars-php">#</a>vars.php</h4>
+                            <pre><code class="hljs language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-comment">// begin with a PHP open tag.</span>
+<span class="hljs-variable">$fruit</span> = <span class="hljs-string">&#x27;apple&#x27;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;I was imported&quot;</span>;
+<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Anything you like.&#x27;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+                            <h4 id="test-php"><a class="h-anchor" href="#test-php">#</a>test.php</h4>
+                            <pre><code class="hljs language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;vars.php&#x27;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$fruit</span> . <span class="hljs-string">&quot;\n&quot;</span>;   <span class="hljs-comment"># =&gt; apple</span>
+
+<span class="hljs-comment">/* Same as include,
+cause an error if cannot be included*/</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;vars.php&#x27;</span>;
+
+<span class="hljs-comment">// Also works</span>
+<span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;vars.php&#x27;</span>);
+<span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;vars.php&#x27;</span>);
+
+<span class="hljs-comment">// Include through HTTP</span>
+<span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;http://x.com/file.php&#x27;</span>;
+
+<span class="hljs-comment">// Include and the return statement</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-keyword">include</span> <span class="hljs-string">&#x27;vars.php&#x27;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>;  <span class="hljs-comment"># =&gt; Anything you like.</span>
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="functions"><a class="h-anchor" href="#functions">#</a>Functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params"><span class="hljs-variable">$num1</span>, <span class="hljs-variable">$num2</span> = <span class="hljs-number">1</span></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$num1</span> + <span class="hljs-variable">$num2</span>;
+&#125;
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">add</span>(<span class="hljs-number">10</span>);    <span class="hljs-comment"># =&gt; 11</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">add</span>(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>); <span class="hljs-comment"># =&gt; 15</span>
+</code></pre>
+                            <p>See: <a href="#php-functions">Functions</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="comments"><a class="h-anchor" href="#comments">#</a>Comments</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment"># This is a one line shell-style comment</span>
+
+<span class="hljs-comment">// This is a one line c++ style comment</span>
+
+<span class="hljs-comment">/* This is a multi line comment
+   yet another line of comment */</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="constants"><a class="h-anchor" href="#constants">#</a>Constants</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MY_CONST</span> = <span class="hljs-string">&quot;hello&quot;</span>;
+
+<span class="hljs-keyword">echo</span> MY_CONST;   <span class="hljs-comment"># =&gt; hello</span>
+
+<span class="hljs-comment"># =&gt; MY_CONST is: hello</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;MY_CONST is: &#x27;</span> . MY_CONST; 
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="classes"><a class="h-anchor" href="#classes">#</a>Classes</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$name</span></span>) </span>&#123;
+        <span class="hljs-variable language_">$this</span>-&gt;name = <span class="hljs-variable">$name</span>;
+    &#125;
+&#125;
+<span class="hljs-variable">$alex</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;Alex&quot;</span>);
+</code></pre>
+                            <p>See: <a href="#php-classes">Classes</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-types"><a class="h-anchor" href="#php-types">#</a>PHP Types</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="boolean"><a class="h-anchor" href="#boolean">#</a>Boolean</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$boolean1</span> = <span class="hljs-literal">true</span>;
+<span class="hljs-variable">$boolean2</span> = <span class="hljs-literal">TRUE</span>;
+<span class="hljs-variable">$boolean3</span> = <span class="hljs-literal">false</span>;
+<span class="hljs-variable">$boolean4</span> = <span class="hljs-literal">FALSE</span>;
+
+<span class="hljs-variable">$boolean5</span> = (<span class="hljs-keyword">boolean</span>) <span class="hljs-number">1</span>;   <span class="hljs-comment"># =&gt; true</span>
+<span class="hljs-variable">$boolean6</span> = (<span class="hljs-keyword">boolean</span>) <span class="hljs-number">0</span>;   <span class="hljs-comment"># =&gt; false</span>
+</code></pre>
+                            <p>Boolean are case-insensitive</p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="integer"><a class="h-anchor" href="#integer">#</a>Integer</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$int1</span> = <span class="hljs-number">28</span>;    <span class="hljs-comment"># =&gt; 28</span>
+<span class="hljs-variable">$int2</span> = -<span class="hljs-number">32</span>;   <span class="hljs-comment"># =&gt; -32</span>
+<span class="hljs-variable">$int3</span> = <span class="hljs-number">012</span>;   <span class="hljs-comment"># =&gt; 10 (octal)</span>
+<span class="hljs-variable">$int4</span> = <span class="hljs-number">0x0F</span>;  <span class="hljs-comment"># =&gt; 15 (hex)</span>
+<span class="hljs-variable">$int5</span> = <span class="hljs-number">0b101</span>; <span class="hljs-comment"># =&gt; 5  (binary)</span>
+
+<span class="hljs-comment"># =&gt; 2000100000 (decimal, PHP 7.4.0)</span>
+<span class="hljs-variable">$int6</span> = <span class="hljs-number">2_000_100_000</span>;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/language.types.integer.php">Integers</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="strings-2"><a class="h-anchor" href="#strings-2">#</a>Strings</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;this is a simple string&#x27;</span>;
+</code></pre>
+                            <p>See: <a href="#php-strings">Strings</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="arrays-2"><a class="h-anchor" href="#arrays-2">#</a>Arrays</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$arr</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>);
+</code></pre>
+                            <p>See: <a href="#php-arrays">Arrays</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="float-double"><a class="h-anchor" href="#float-double">#</a>Float (Double)</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$float1</span> = <span class="hljs-number">1.234</span>;
+<span class="hljs-variable">$float2</span> = <span class="hljs-number">1.2e7</span>;
+<span class="hljs-variable">$float3</span> = <span class="hljs-number">7E-10</span>;
+
+<span class="hljs-variable">$float4</span> = <span class="hljs-number">1_234.567</span>;  <span class="hljs-comment">// as of PHP 7.4.0</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$float4</span>);    <span class="hljs-comment">// float(1234.567)</span>
+
+<span class="hljs-variable">$float5</span> = <span class="hljs-number">1</span> + <span class="hljs-string">&quot;10.5&quot;</span>;   <span class="hljs-comment"># =&gt; 11.5</span>
+<span class="hljs-variable">$float6</span> = <span class="hljs-number">1</span> + <span class="hljs-string">&quot;-1.3e3&quot;</span>; <span class="hljs-comment"># =&gt; -1299</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="null"><a class="h-anchor" href="#null">#</a>Null</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$a</span> = <span class="hljs-literal">null</span>;
+<span class="hljs-variable">$b</span> = <span class="hljs-string">&#x27;Hello php!&#x27;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span> ?? <span class="hljs-string">&#x27;a is unset&#x27;</span>; <span class="hljs-comment"># =&gt; a is unset</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$b</span> ?? <span class="hljs-string">&#x27;b is unset&#x27;</span>; <span class="hljs-comment"># =&gt; Hello php</span>
+
+<span class="hljs-variable">$a</span> = <span class="hljs-keyword">array</span>();
+<span class="hljs-variable">$a</span> == <span class="hljs-literal">null</span>    <span class="hljs-comment"># =&gt; true</span>
+<span class="hljs-variable">$a</span> === <span class="hljs-literal">null</span>   <span class="hljs-comment"># =&gt; false</span>
+<span class="hljs-title function_ invoke__">is_null</span>(<span class="hljs-variable">$a</span>)   <span class="hljs-comment"># =&gt; false</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="iterables"><a class="h-anchor" href="#iterables">#</a>Iterables</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>): <span class="hljs-title">iterable</span> </span>&#123;
+    <span class="hljs-keyword">return</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gen</span>(<span class="hljs-params"></span>): <span class="hljs-title">iterable</span> </span>&#123;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+&#125;
+<span class="hljs-keyword">foreach</span> (<span class="hljs-title function_ invoke__">bar</span>() <span class="hljs-keyword">as</span> <span class="hljs-variable">$value</span>) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$value</span>;   <span class="hljs-comment"># =&gt; 123</span>
+&#125; 
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-strings"><a class="h-anchor" href="#php-strings">#</a>PHP Strings</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="string"><a class="h-anchor" href="#string">#</a>String</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment"># =&gt; &#x27;$String&#x27;</span>
+<span class="hljs-variable">$sgl_quotes</span> = <span class="hljs-string">&#x27;$String&#x27;</span>;
+
+<span class="hljs-comment"># =&gt; &#x27;This is a $String.&#x27;</span>
+<span class="hljs-variable">$dbl_quotes</span> = <span class="hljs-string">&quot;This is a <span class="hljs-subst">$sgl_quotes</span>.&quot;</span>;
+
+<span class="hljs-comment"># =&gt; a 	 tab character.</span>
+<span class="hljs-variable">$escaped</span>   = <span class="hljs-string">&quot;a \t tab character.&quot;</span>;
+
+<span class="hljs-comment"># =&gt; a slash and a t: \t</span>
+<span class="hljs-variable">$unescaped</span> = <span class="hljs-string">&#x27;a slash and a t: \t&#x27;</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="multi-line"><a class="h-anchor" href="#multi-line">#</a>Multi-line</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$str</span> = <span class="hljs-string">&quot;foo&quot;</span>;
+
+<span class="hljs-comment">// Uninterpolated multi-liners</span>
+<span class="hljs-variable">$nowdoc</span> = <span class="hljs-string">&lt;&lt;&lt;&#x27;END&#x27;
+Multi line string
+$str
+END</span>;
+
+<span class="hljs-comment">// Will do string interpolation</span>
+<span class="hljs-variable">$heredoc</span> = <span class="hljs-string">&lt;&lt;&lt;END
+Multi line
+<span class="hljs-subst">$str</span>
+END</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="manipulation"><a class="h-anchor" href="#manipulation">#</a>Manipulation</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$s</span> = <span class="hljs-string">&quot;Hello Phper&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$s</span>);       <span class="hljs-comment"># =&gt; 11</span>
+
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$s</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>); <span class="hljs-comment"># =&gt; Hel</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$s</span>, <span class="hljs-number">1</span>);    <span class="hljs-comment"># =&gt; ello Phper</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$s</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">3</span>);<span class="hljs-comment"># =&gt; hpe</span>
+
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">strtoupper</span>(<span class="hljs-variable">$s</span>);   <span class="hljs-comment"># =&gt; HELLO PHPER</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">strtolower</span>(<span class="hljs-variable">$s</span>);   <span class="hljs-comment"># =&gt; hello phper</span>
+
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$s</span>, <span class="hljs-string">&quot;l&quot;</span>);      <span class="hljs-comment"># =&gt; 2</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">strpos</span>(<span class="hljs-variable">$s</span>, <span class="hljs-string">&quot;L&quot;</span>)); <span class="hljs-comment"># =&gt; false</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/ref.strings.php">String Functions</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-arrays"><a class="h-anchor" href="#php-arrays">#</a>PHP Arrays</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="defining"><a class="h-anchor" href="#defining">#</a>Defining</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$a1</span> = [<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>]
+<span class="hljs-variable">$a2</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;world&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>);
+<span class="hljs-variable">$a3</span> = <span class="hljs-title function_ invoke__">explode</span>(<span class="hljs-string">&quot;,&quot;</span>, <span class="hljs-string">&quot;apple,pear,peach&quot;</span>);
+</code></pre>
+                            <h4 id="mixed-int-and-string-keys"><a class="h-anchor" href="#mixed-int-and-string-keys">#</a>Mixed int and string keys</h4>
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$array</span> = <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">&quot;foo&quot;</span> =&gt; <span class="hljs-string">&quot;bar&quot;</span>,
+    <span class="hljs-string">&quot;bar&quot;</span> =&gt; <span class="hljs-string">&quot;foo&quot;</span>,
+    <span class="hljs-number">100</span>   =&gt; -<span class="hljs-number">100</span>,
+    -<span class="hljs-number">100</span>  =&gt; <span class="hljs-number">100</span>,
+);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$array</span>);
+</code></pre>
+                            <h4 id="short-array-syntax"><a class="h-anchor" href="#short-array-syntax">#</a>Short array syntax</h4>
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$array</span> = [
+    <span class="hljs-string">&quot;foo&quot;</span> =&gt; <span class="hljs-string">&quot;bar&quot;</span>,
+    <span class="hljs-string">&quot;bar&quot;</span> =&gt; <span class="hljs-string">&quot;foo&quot;</span>,
+];
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="multi-array"><a class="h-anchor" href="#multi-array">#</a>Multi array</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$multiArray</span> = [ 
+    [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+    [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>],
+    [<span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>],
+];
+
+<span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$multiArray</span>[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]) <span class="hljs-comment"># =&gt; 1</span>
+<span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$multiArray</span>[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]) <span class="hljs-comment"># =&gt; 2</span>
+<span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$multiArray</span>[<span class="hljs-number">0</span>][<span class="hljs-number">2</span>]) <span class="hljs-comment"># =&gt; 3</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="multi-type"><a class="h-anchor" href="#multi-type">#</a>Multi type</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$array</span> = <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">&quot;foo&quot;</span> =&gt; <span class="hljs-string">&quot;bar&quot;</span>,
+    <span class="hljs-number">42</span>    =&gt; <span class="hljs-number">24</span>,
+    <span class="hljs-string">&quot;multi&quot;</span> =&gt; <span class="hljs-keyword">array</span>(
+         <span class="hljs-string">&quot;dim&quot;</span> =&gt; <span class="hljs-keyword">array</span>(
+             <span class="hljs-string">&quot;a&quot;</span> =&gt; <span class="hljs-string">&quot;foo&quot;</span>
+         )
+    )
+);
+
+<span class="hljs-comment"># =&gt; string(3) &quot;bar&quot;</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$array</span>[<span class="hljs-string">&quot;foo&quot;</span>]);
+
+<span class="hljs-comment"># =&gt; int(24)</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$array</span>[<span class="hljs-number">42</span>]);    
+
+<span class="hljs-comment"># =&gt;  string(3) &quot;foo&quot;</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$array</span>[<span class="hljs-string">&quot;multi&quot;</span>][<span class="hljs-string">&quot;dim&quot;</span>][<span class="hljs-string">&quot;a&quot;</span>]);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="manipulation-2"><a class="h-anchor" href="#manipulation-2">#</a>manipulation</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$arr</span> = <span class="hljs-keyword">array</span>(<span class="hljs-number">5</span> =&gt; <span class="hljs-number">1</span>, <span class="hljs-number">12</span> =&gt; <span class="hljs-number">2</span>);
+<span class="hljs-variable">$arr</span>[] = <span class="hljs-number">56</span>;      <span class="hljs-comment">// Append</span>
+<span class="hljs-variable">$arr</span>[<span class="hljs-string">&quot;x&quot;</span>] = <span class="hljs-number">42</span>;   <span class="hljs-comment">// Add with key</span>
+<span class="hljs-title function_ invoke__">sort</span>(<span class="hljs-variable">$arr</span>);       <span class="hljs-comment">// Sort</span>
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$arr</span>[<span class="hljs-number">5</span>]);   <span class="hljs-comment">// Remove</span>
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$arr</span>);      <span class="hljs-comment">// Remove all</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/ref.array.php">Array Functions</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="indexing-iteration"><a class="h-anchor" href="#indexing-iteration">#</a>Indexing iteration</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$array</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>);
+<span class="hljs-variable">$count</span> = <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$array</span>);
+
+<span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-variable">$count</span>; <span class="hljs-variable">$i</span>++) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;i:<span class="hljs-subst">&#123;$i&#125;</span>, v:<span class="hljs-subst">&#123;$array[$i]&#125;</span>\n&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="value-iteration"><a class="h-anchor" href="#value-iteration">#</a>Value iteration</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$colors</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;red&#x27;</span>, <span class="hljs-string">&#x27;blue&#x27;</span>, <span class="hljs-string">&#x27;green&#x27;</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$colors</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$color</span>) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Do you like <span class="hljs-subst">$color</span>?\n&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="key-iteration"><a class="h-anchor" href="#key-iteration">#</a>Key iteration</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$arr</span> = [<span class="hljs-string">&quot;foo&quot;</span> =&gt; <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span> =&gt; <span class="hljs-string">&quot;foo&quot;</span>];
+
+<span class="hljs-keyword">foreach</span> ( <span class="hljs-variable">$arr</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$key</span> =&gt; <span class="hljs-variable">$value</span> )
+&#123;
+  	<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;key: &quot;</span> . <span class="hljs-variable">$key</span> . <span class="hljs-string">&quot;\n&quot;</span>;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;val: <span class="hljs-subst">&#123;$arr[$key]&#125;</span>\n&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="concatenate-arrays"><a class="h-anchor" href="#concatenate-arrays">#</a>Concatenate arrays</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$a</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
+<span class="hljs-variable">$b</span> = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+
+<span class="hljs-comment">// PHP 7.4 later</span>
+<span class="hljs-comment"># =&gt; [1, 2, 3, 4]</span>
+<span class="hljs-variable">$result</span> = [...<span class="hljs-variable">$a</span>, ...<span class="hljs-variable">$b</span>];
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="into-functions"><a class="h-anchor" href="#into-functions">#</a>Into functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$array</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$a</span>, <span class="hljs-keyword">int</span> <span class="hljs-variable">$b</span></span>) </span>&#123;
+	<span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span>; <span class="hljs-comment"># =&gt; 1</span>
+  	<span class="hljs-keyword">echo</span> <span class="hljs-variable">$b</span>; <span class="hljs-comment"># =&gt; 2</span>
+&#125;
+<span class="hljs-title function_ invoke__">foo</span>(...<span class="hljs-variable">$array</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="splat-operator"><a class="h-anchor" href="#splat-operator">#</a>Splat Operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"><span class="hljs-variable">$first</span>, ...<span class="hljs-variable">$other</span></span>) </span>&#123;
+	<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$first</span>); <span class="hljs-comment"># =&gt; a</span>
+  	<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$other</span>); <span class="hljs-comment"># =&gt; [&#x27;b&#x27;, &#x27;c&#x27;]</span>
+&#125;
+<span class="hljs-title function_ invoke__">foo</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span> <span class="hljs-comment">/*, ...*/</span> );
+<span class="hljs-comment">// or</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"><span class="hljs-variable">$first</span>, <span class="hljs-keyword">string</span> ...<span class="hljs-variable">$other</span></span>)</span>&#123;&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap cols-4">
+                <h2 id="php-operators"><a class="h-anchor" href="#php-operators">#</a>PHP Operators</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="arithmetic"><a class="h-anchor" href="#arithmetic">#</a>Arithmetic</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>+</code></td>
+                                        <td>Addition</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>-</code></td>
+                                        <td>Subtraction</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>*</code></td>
+                                        <td>Multiplication</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/</code></td>
+                                        <td>Division</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>%</code></td>
+                                        <td>Modulo</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>**</code></td>
+                                        <td>Exponentiation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="assignment"><a class="h-anchor" href="#assignment">#</a>Assignment</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>a += b</code></td>
+                                        <td>Same as <code>a = a + b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a -= b</code></td>
+                                        <td>Same as <code>a = a – b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a *= b</code></td>
+                                        <td>Same as <code>a = a * b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a /= b</code></td>
+                                        <td>Same as <code>a = a / b</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a %= b</code></td>
+                                        <td>Same as <code>a = a % b</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="comparison"><a class="h-anchor" href="#comparison">#</a>Comparison</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>==</code></td>
+                                        <td>Equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>===</code></td>
+                                        <td>Identical</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!=</code></td>
+                                        <td>Not equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;&gt;</code></td>
+                                        <td>Not equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!==</code></td>
+                                        <td>Not identical</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;</code></td>
+                                        <td>Less than</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&gt;</code></td>
+                                        <td>Greater than</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;=</code></td>
+                                        <td>Less than or equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&gt;=</code></td>
+                                        <td>Greater than or equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;=&gt;</code></td>
+                                        <td>Less than/equal/greater than</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="logical"><a class="h-anchor" href="#logical">#</a>Logical</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>and</code></td>
+                                        <td>And</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>or</code></td>
+                                        <td>Or</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>xor</code></td>
+                                        <td>Exclusive or</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>!</code></td>
+                                        <td>Not</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&amp;&amp;</code></td>
+                                        <td>And</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>||</code></td>
+                                        <td>Or</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="arithmetic-2"><a class="h-anchor" href="#arithmetic-2">#</a>Arithmetic</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment">// Arithmetic</span>
+<span class="hljs-variable">$sum</span>        = <span class="hljs-number">1</span> + <span class="hljs-number">1</span>; <span class="hljs-comment">// 2</span>
+<span class="hljs-variable">$difference</span> = <span class="hljs-number">2</span> - <span class="hljs-number">1</span>; <span class="hljs-comment">// 1</span>
+<span class="hljs-variable">$product</span>    = <span class="hljs-number">2</span> * <span class="hljs-number">2</span>; <span class="hljs-comment">// 4</span>
+<span class="hljs-variable">$quotient</span>   = <span class="hljs-number">2</span> / <span class="hljs-number">1</span>; <span class="hljs-comment">// 2</span>
+
+<span class="hljs-comment">// Shorthand arithmetic</span>
+<span class="hljs-variable">$num</span> = <span class="hljs-number">0</span>;
+<span class="hljs-variable">$num</span> += <span class="hljs-number">1</span>;       <span class="hljs-comment">// Increment $num by 1</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$num</span>++;     <span class="hljs-comment">// Prints 1 (increments after evaluation)</span>
+<span class="hljs-keyword">echo</span> ++<span class="hljs-variable">$num</span>;     <span class="hljs-comment">// Prints 3 (increments before evaluation)</span>
+<span class="hljs-variable">$num</span> /= <span class="hljs-variable">$float</span>;  <span class="hljs-comment">// Divide and assign the quotient to $num</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="bitwise"><a class="h-anchor" href="#bitwise">#</a>Bitwise</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>&amp;</code></td>
+                                        <td>And</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>|</code></td>
+                                        <td>Or (inclusive or)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>^</code></td>
+                                        <td>Xor (exclusive or)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>~</code></td>
+                                        <td>Not</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&lt;&lt;</code></td>
+                                        <td>Shift left</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>&gt;&gt;</code></td>
+                                        <td>Shift right</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-conditionals"><a class="h-anchor" href="#php-conditionals">#</a>PHP Conditionals</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="if-elseif-else"><a class="h-anchor" href="#if-elseif-else">#</a>If elseif else</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$a</span> = <span class="hljs-number">10</span>;
+<span class="hljs-variable">$b</span> = <span class="hljs-number">20</span>;
+
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$a</span> &gt; <span class="hljs-variable">$b</span>) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;a is bigger than b&quot;</span>;
+&#125; <span class="hljs-keyword">elseif</span> (<span class="hljs-variable">$a</span> == <span class="hljs-variable">$b</span>) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;a is equal to b&quot;</span>;
+&#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;a is smaller than b&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="switch"><a class="h-anchor" href="#switch">#</a>Switch</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$x</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">switch</span> (<span class="hljs-variable">$x</span>) &#123;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;0&#x27;</span>:
+        <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;it&#x27;s zero&quot;</span>;
+        <span class="hljs-keyword">break</span>; 
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;two&#x27;</span>:
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;three&#x27;</span>:
+        <span class="hljs-comment">// do something</span>
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        <span class="hljs-comment">// do something</span>
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="ternary-operator"><a class="h-anchor" href="#ternary-operator">#</a>Ternary operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment"># =&gt; Does</span>
+<span class="hljs-keyword">print</span> (<span class="hljs-literal">false</span> ? <span class="hljs-string">&#x27;Not&#x27;</span> : <span class="hljs-string">&#x27;Does&#x27;</span>);
+
+<span class="hljs-variable">$x</span> = <span class="hljs-literal">false</span>;
+<span class="hljs-comment"># =&gt; Does</span>
+<span class="hljs-keyword">print</span>(<span class="hljs-variable">$x</span> ?: <span class="hljs-string">&#x27;Does&#x27;</span>);
+
+<span class="hljs-variable">$a</span> = <span class="hljs-literal">null</span>;
+<span class="hljs-variable">$b</span> = <span class="hljs-string">&#x27;Does print&#x27;</span>;
+<span class="hljs-comment"># =&gt; a is unset</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$a</span> ?? <span class="hljs-string">&#x27;a is unset&#x27;</span>;
+<span class="hljs-comment"># =&gt; print</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$b</span> ?? <span class="hljs-string">&#x27;b is unset&#x27;</span>;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="match"><a class="h-anchor" href="#match">#</a>Match</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$statusCode</span> = <span class="hljs-number">500</span>;
+<span class="hljs-variable">$message</span> = <span class="hljs-keyword">match</span>(<span class="hljs-variable">$statusCode</span>) &#123;
+  <span class="hljs-number">200</span>, <span class="hljs-number">300</span> =&gt; <span class="hljs-literal">null</span>,
+  <span class="hljs-number">400</span> =&gt; <span class="hljs-string">&#x27;not found&#x27;</span>,
+  <span class="hljs-number">500</span> =&gt; <span class="hljs-string">&#x27;server error&#x27;</span>,
+  <span class="hljs-keyword">default</span> =&gt; <span class="hljs-string">&#x27;known status code&#x27;</span>,
+&#125;;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$message</span>; <span class="hljs-comment"># =&gt; server error</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/control-structures.match.php">Match</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="match-expressions"><a class="h-anchor" href="#match-expressions">#</a>Match expressions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$age</span> = <span class="hljs-number">23</span>;
+
+<span class="hljs-variable">$result</span> = <span class="hljs-keyword">match</span> (<span class="hljs-literal">true</span>) &#123;
+    <span class="hljs-variable">$age</span> &gt;= <span class="hljs-number">65</span> =&gt; <span class="hljs-string">&#x27;senior&#x27;</span>,
+    <span class="hljs-variable">$age</span> &gt;= <span class="hljs-number">25</span> =&gt; <span class="hljs-string">&#x27;adult&#x27;</span>,
+    <span class="hljs-variable">$age</span> &gt;= <span class="hljs-number">18</span> =&gt; <span class="hljs-string">&#x27;young adult&#x27;</span>,
+    <span class="hljs-keyword">default</span> =&gt; <span class="hljs-string">&#x27;kid&#x27;</span>,
+&#125;;
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$result</span>; <span class="hljs-comment"># =&gt; young adult</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-loops"><a class="h-anchor" href="#php-loops">#</a>PHP Loops</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="while"><a class="h-anchor" href="#while">#</a>while</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>;
+<span class="hljs-comment"># =&gt; 12345</span>
+<span class="hljs-keyword">while</span> (<span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">5</span>) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$i</span>++;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="do-while"><a class="h-anchor" href="#do-while">#</a>do while</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>;
+<span class="hljs-comment"># =&gt; 12345</span>
+<span class="hljs-keyword">do</span> &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$i</span>++;
+&#125; <span class="hljs-keyword">while</span> (<span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">5</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="for-i"><a class="h-anchor" href="#for-i">#</a>for i</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment"># =&gt; 12345</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$i</span>++) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$i</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="break"><a class="h-anchor" href="#break">#</a>break</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment"># =&gt; 123</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$i</span>++) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$i</span> === <span class="hljs-number">4</span>) &#123;
+        <span class="hljs-keyword">break</span>;
+    &#125;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$i</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="continue"><a class="h-anchor" href="#continue">#</a>continue</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment"># =&gt; 1235</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$i</span>++) &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$i</span> === <span class="hljs-number">4</span>) &#123;
+        <span class="hljs-keyword">continue</span>;
+    &#125;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$i</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="foreach"><a class="h-anchor" href="#foreach">#</a>foreach</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$a</span> = [<span class="hljs-string">&#x27;foo&#x27;</span> =&gt; <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;bar&#x27;</span> =&gt; <span class="hljs-number">2</span>];
+<span class="hljs-comment"># =&gt; 12</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$a</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$k</span>) &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$k</span>;
+&#125;
+</code></pre>
+                            <p>See: <a href="#php-value-iteration">Array iteration</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-functions"><a class="h-anchor" href="#php-functions">#</a>PHP Functions</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="returning-values"><a class="h-anchor" href="#returning-values">#</a>Returning values</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span>(<span class="hljs-params"><span class="hljs-variable">$x</span></span>)
+</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$x</span> * <span class="hljs-variable">$x</span>;
+&#125;
+
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">square</span>(<span class="hljs-number">4</span>);  <span class="hljs-comment"># =&gt; 16</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="return-types"><a class="h-anchor" href="#return-types">#</a>Return types</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment">// Basic return type declaration</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params"><span class="hljs-variable">$a</span>, <span class="hljs-variable">$b</span></span>): <span class="hljs-title">float</span> </span>&#123;<span class="hljs-comment">/*...*/</span>&#125;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_item</span>(<span class="hljs-params"></span>): <span class="hljs-title">string</span> </span>&#123;<span class="hljs-comment">/*...*/</span>&#125;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>&#123;&#125;
+<span class="hljs-comment">// Returning an object</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getC</span>(<span class="hljs-params"></span>): <span class="hljs-title">C</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> C; &#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="nullable-return-types"><a class="h-anchor" href="#nullable-return-types">#</a>Nullable return types</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment">// Available in PHP 7.1</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">nullOrString</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> <span class="hljs-variable">$v</span></span>) : ?<span class="hljs-title">string</span>
+</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$v</span> % <span class="hljs-number">2</span> ? <span class="hljs-string">&quot;odd&quot;</span> : <span class="hljs-literal">null</span>;
+&#125;
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">nullOrString</span>(<span class="hljs-number">3</span>);       <span class="hljs-comment"># =&gt; odd</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-title function_ invoke__">nullOrString</span>(<span class="hljs-number">4</span>));  <span class="hljs-comment"># =&gt; NULL</span>
+</code></pre>
+                            <p>See: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/migration71.new-features.php">Nullable types</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="void-functions"><a class="h-anchor" href="#void-functions">#</a>Void functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment">// Available in PHP 7.1</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">voidFunction</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+</span>&#123;
+	<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Hello&#x27;</span>;
+	<span class="hljs-keyword">return</span>;
+&#125;
+
+<span class="hljs-title function_ invoke__">voidFunction</span>();  <span class="hljs-comment"># =&gt; Hello</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="variable-functions"><a class="h-anchor" href="#variable-functions">#</a>Variable functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"><span class="hljs-variable">$arg</span> = <span class="hljs-string">&#x27;&#x27;</span></span>)
+</span>&#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;In bar(); arg: &#x27;<span class="hljs-subst">$arg</span>&#x27;.\n&quot;</span>;
+&#125;
+
+<span class="hljs-variable">$func</span> = <span class="hljs-string">&#x27;bar&#x27;</span>;
+<span class="hljs-variable">$func</span>(<span class="hljs-string">&#x27;test&#x27;</span>); <span class="hljs-comment"># =&gt; In bar(); arg: test</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="anonymous-functions"><a class="h-anchor" href="#anonymous-functions">#</a>Anonymous functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$greet</span> = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-variable">$name</span></span>)
+</span>&#123;
+    <span class="hljs-title function_ invoke__">printf</span>(<span class="hljs-string">&quot;Hello %s\r\n&quot;</span>, <span class="hljs-variable">$name</span>);
+&#125;;
+
+<span class="hljs-variable">$greet</span>(<span class="hljs-string">&#x27;World&#x27;</span>); <span class="hljs-comment"># =&gt; Hello World</span>
+<span class="hljs-variable">$greet</span>(<span class="hljs-string">&#x27;PHP&#x27;</span>);   <span class="hljs-comment"># =&gt; Hello PHP</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="recursive-functions"><a class="h-anchor" href="#recursive-functions">#</a>Recursive functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursion</span>(<span class="hljs-params"><span class="hljs-variable">$x</span></span>)
+</span>&#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$x</span> &lt; <span class="hljs-number">5</span>) &#123;
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$x</span>&quot;</span>;
+        <span class="hljs-title function_ invoke__">recursion</span>(<span class="hljs-variable">$x</span> + <span class="hljs-number">1</span>);
+    &#125;
+&#125;
+<span class="hljs-title function_ invoke__">recursion</span>(<span class="hljs-number">1</span>);  <span class="hljs-comment"># =&gt; 1234</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="default-parameters"><a class="h-anchor" href="#default-parameters">#</a>Default parameters</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">coffee</span>(<span class="hljs-params"><span class="hljs-variable">$type</span> = <span class="hljs-string">&quot;cappuccino&quot;</span></span>)
+</span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Making a cup of <span class="hljs-subst">$type</span>.\n&quot;</span>;
+&#125;
+<span class="hljs-comment"># =&gt; Making a cup of cappuccino.</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">coffee</span>();
+<span class="hljs-comment"># =&gt; Making a cup of .</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">coffee</span>(<span class="hljs-literal">null</span>);
+<span class="hljs-comment"># =&gt; Making a cup of espresso.</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">coffee</span>(<span class="hljs-string">&quot;espresso&quot;</span>);
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="arrow-functions"><a class="h-anchor" href="#arrow-functions">#</a>Arrow Functions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$y</span> = <span class="hljs-number">1</span>;
+ 
+<span class="hljs-variable">$fn1</span> = <span class="hljs-function"><span class="hljs-keyword">fn</span>(<span class="hljs-params"><span class="hljs-variable">$x</span></span>) =&gt;</span> <span class="hljs-variable">$x</span> + <span class="hljs-variable">$y</span>;
+
+<span class="hljs-comment">// equivalent to using $y by value:</span>
+<span class="hljs-variable">$fn2</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"><span class="hljs-variable">$x</span></span>) <span class="hljs-keyword">use</span> (<span class="hljs-params"><span class="hljs-variable">$y</span></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$x</span> + <span class="hljs-variable">$y</span>;
+&#125;;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$fn1</span>(<span class="hljs-number">5</span>);   <span class="hljs-comment"># =&gt; 6</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$fn2</span>(<span class="hljs-number">5</span>);   <span class="hljs-comment"># =&gt; 6</span>
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="php-classes"><a class="h-anchor" href="#php-classes">#</a>PHP Classes</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="constructor"><a class="h-anchor" href="#constructor">#</a>Constructor</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>&#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params"><span class="hljs-variable">$name</span></span>) </span>&#123;
+        <span class="hljs-variable language_">$this</span>-&gt;name = <span class="hljs-variable">$name</span>;
+    &#125;
+  	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params"></span>) </span>&#123;
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Name: &quot;</span> . <span class="hljs-variable language_">$this</span>-&gt;name;
+    &#125;
+&#125;
+<span class="hljs-variable">$alex</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;Alex&quot;</span>);
+<span class="hljs-variable">$alex</span>-&gt;<span class="hljs-keyword">print</span>();    <span class="hljs-comment"># =&gt; Name: Alex</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="inheritance"><a class="h-anchor" href="#inheritance">#</a>Inheritance</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExtendClass</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SimpleClass</span>
+</span>&#123;
+    <span class="hljs-comment">// Redefine the parent method</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displayVar</span>(<span class="hljs-params"></span>)
+    </span>&#123;
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Extending class\n&quot;</span>;
+        <span class="hljs-built_in">parent</span>::<span class="hljs-title function_ invoke__">displayVar</span>();
+    &#125;
+&#125;
+
+<span class="hljs-variable">$extended</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExtendClass</span>();
+<span class="hljs-variable">$extended</span>-&gt;<span class="hljs-title function_ invoke__">displayVar</span>();
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="classes-variables"><a class="h-anchor" href="#classes-variables">#</a>Classes variables</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>
+</span>&#123;
+    <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">MY_CONST</span>       = <span class="hljs-string">&#x27;value&#x27;</span>;
+    <span class="hljs-built_in">static</span> <span class="hljs-variable">$staticVar</span>    = <span class="hljs-string">&#x27;static&#x27;</span>;
+
+    <span class="hljs-comment">// Visibility</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-variable">$var1</span>  = <span class="hljs-string">&#x27;pubs&#x27;</span>;
+
+    <span class="hljs-comment">// Class only</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">static</span> <span class="hljs-variable">$var2</span> = <span class="hljs-string">&#x27;pris&#x27;</span>;
+
+    <span class="hljs-comment">// The class and subclasses</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-built_in">static</span> <span class="hljs-variable">$var3</span> = <span class="hljs-string">&#x27;pros&#x27;</span>;
+
+    <span class="hljs-comment">// The class and subclasses</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$var6</span>      = <span class="hljs-string">&#x27;pro&#x27;</span>;
+
+    <span class="hljs-comment">// The class only</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$var7</span>        = <span class="hljs-string">&#x27;pri&#x27;</span>;  
+&#125;
+</code></pre>
+                            <p>Access statically</p>
+                            <pre><code class="hljs language-php"><span class="hljs-keyword">echo</span> <span class="hljs-title class_">MyClass</span>::<span class="hljs-variable constant_">MY_CONST</span>;   <span class="hljs-comment"># =&gt; value</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-title class_">MyClass</span>::<span class="hljs-variable">$staticVar</span>; <span class="hljs-comment"># =&gt; static</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="magic-methods"><a class="h-anchor" href="#magic-methods">#</a>Magic Methods</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>
+</span>&#123;
+    <span class="hljs-comment">// Object is treated as a String</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__toString</span>(<span class="hljs-params"></span>)
+    </span>&#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$property</span>;
+    &#125;
+    <span class="hljs-comment">// opposite to __construct()</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span>(<span class="hljs-params"></span>)
+    </span>&#123;
+        <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Destroying&quot;</span>;
+    &#125;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="interface"><a class="h-anchor" href="#interface">#</a>Interface</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Foo</span> 
+</span>&#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params"></span>)</span>;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Bar</span>
+</span>&#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomethingElse</span>(<span class="hljs-params"></span>)</span>;
+&#125;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cls</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Foo</span>, <span class="hljs-title">Bar</span> 
+</span>&#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomethingElse</span>(<span class="hljs-params"></span>) </span>&#123;&#125;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="miscellaneous"><a class="h-anchor" href="#miscellaneous">#</a>Miscellaneous</h2>
+                <div class="h3-wrap-list">
+                    <div class="h3-wrap">
+                        <h3 id="basic-error-handling"><a class="h-anchor" href="#basic-error-handling">#</a>Basic error handling</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-comment">// Do something</span>
+&#125; <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">Exception</span> <span class="hljs-variable">$e</span>) &#123;
+    <span class="hljs-comment">// Handle exception</span>
+&#125; <span class="hljs-keyword">finally</span> &#123;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Always print!&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap col-span-2">
+                        <h3 id="exception-in-php-8-0"><a class="h-anchor" href="#exception-in-php-8-0">#</a>Exception in PHP 8.0</h3>
+                        <div class="section">
+                            <pre><code class="hljs wrap language-php"><span class="hljs-variable">$nullableValue</span> = <span class="hljs-literal">null</span>;
+
+<span class="hljs-keyword">try</span> &#123;
+	<span class="hljs-variable">$value</span> = <span class="hljs-variable">$nullableValue</span> ?? <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">InvalidArgumentException</span>();
+&#125; <span class="hljs-keyword">catch</span> (<span class="hljs-built_in">InvalidArgumentException</span>) &#123; <span class="hljs-comment">// Variable is optional</span>
+    <span class="hljs-comment">// Handle my exception</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;print me!&quot;</span>;
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="custom-exception"><a class="h-anchor" href="#custom-exception">#</a>Custom exception</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyException</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Exception</span> </span>&#123;
+    <span class="hljs-comment">// do something</span>
+&#125;
+</code></pre>
+                            <p>Usage</p>
+                            <pre><code class="hljs language-php"><span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-variable">$condition</span> = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$condition</span>) &#123;
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyException</span>(<span class="hljs-string">&#x27;bala&#x27;</span>);
+    &#125;
+&#125; <span class="hljs-keyword">catch</span> (MyException <span class="hljs-variable">$e</span>) &#123;
+    <span class="hljs-comment">// Handle my exception</span>
+&#125;
+</code></pre>
+                        </div>
+                    </div>
+                    <div class="h3-wrap row-span-2">
+                        <h3 id="nullsafe-operator"><a class="h-anchor" href="#nullsafe-operator">#</a>Nullsafe Operator</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-comment">// As of PHP 8.0.0, this line:</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$repo</span>?-&gt;<span class="hljs-title function_ invoke__">getUser</span>(<span class="hljs-number">5</span>)?-&gt;name;
+
+<span class="hljs-comment">// Equivalent to the following code:</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">is_null</span>(<span class="hljs-variable">$repo</span>)) &#123;
+    <span class="hljs-variable">$result</span> = <span class="hljs-literal">null</span>;
+&#125; <span class="hljs-keyword">else</span> &#123;
+    <span class="hljs-variable">$user</span> = <span class="hljs-variable">$repository</span>-&gt;<span class="hljs-title function_ invoke__">getUser</span>(<span class="hljs-number">5</span>);
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">is_null</span>(<span class="hljs-variable">$user</span>)) &#123;
+        <span class="hljs-variable">$result</span> = <span class="hljs-literal">null</span>;
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-variable">$result</span> = <span class="hljs-variable">$user</span>-&gt;name;
+    &#125;
+&#125;
+</code></pre>
+                            <p>See also: <a target="_blank" rel="noopener external nofollow noreferrer" href="https://wiki.php.net/rfc/nullsafe_operator">Nullsafe Operator</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="regular-expressions"><a class="h-anchor" href="#regular-expressions">#</a>Regular expressions</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-variable">$str</span> = <span class="hljs-string">&quot;Visit Quickref.me&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/qu/i&quot;</span>, <span class="hljs-variable">$str</span>); <span class="hljs-comment"># =&gt; 1</span>
+</code></pre>
+                            <p>See: <a href="/regex#regex-in-php">Regex in PHP</a></p>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="fopen-mode"><a class="h-anchor" href="#fopen-mode">#</a>fopen() mode</h3>
+                        <div class="section">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>r</code></td>
+                                        <td>Read</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>r+</code></td>
+                                        <td>Read and write, prepend</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>w</code></td>
+                                        <td>Write, truncate</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>w+</code></td>
+                                        <td>Read and write, truncate</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a</code></td>
+                                        <td>Write, append</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>a+</code></td>
+                                        <td>Read and write, append</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="h3-wrap">
+                        <h3 id="runtime-defined-constants"><a class="h-anchor" href="#runtime-defined-constants">#</a>Runtime defined Constants</h3>
+                        <div class="section">
+                            <pre><code class="hljs language-php"><span class="hljs-title function_ invoke__">define</span>(<span class="hljs-string">&quot;CURRENT_DATE&quot;</span>, <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&#x27;Y-m-d&#x27;</span>));
+
+<span class="hljs-comment">// One possible representation</span>
+<span class="hljs-keyword">echo</span> CURRENT_DATE;   <span class="hljs-comment"># =&gt; 2021-01-05</span>
+
+<span class="hljs-comment"># =&gt; CURRENT_DATE is: 2021-01-05</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;CURRENT_DATE is: &#x27;</span> . CURRENT_DATE; 
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h2-wrap">
+                <h2 id="also-see"><a class="h-anchor" href="#also-see">#</a>Also see</h2>
+                <div class="h3-wrap-list">
+                    <ul>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.php.net/manual/en/index.php">PHP Docs</a></li>
+                        <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://learnxinyminutes.com/docs/php/">Learn X in Y minutes</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div data-pw-desk="med_rect_btf" id="pwDeskMedRectBtf3"></div>
+            <script type="text/javascript">
+                window.ramp.que.push(function() {
+                    window.ramp.addTag("pwDeskMedRectBtf3")
+                })
+            </script>
+        </div>
+    </div>
+    <script>
+        ! function(e, n, t, r) {
+            var o = n.createElement(t);
+            o.async = 1, o.src = "https://a.ad.gt/api/v1/u/matches/514?url=" + encodeURIComponent(e.location.href) + "&ref=" + encodeURIComponent(n.referrer);
+            var a = n.getElementsByTagName(t)[0];
+            a.parentNode.insertBefore(o, a)
+        }(window, document, "script")
+    </script>
+    <div id="mysearch" class="z-50 fixed inset-0 flex justify-center bg-slate-600/80 dark:bg-slate-900/90 items-start text-sm z-50 overflow-hidden lg:pt-16 lg:pb-20 hidden">
+        <div id="mysearch-box" class="lg:max-w-screen-lg w-full flex flex-col justify-between bg-white dark:bg-slate-700 shadow-3xl dark:shadow-3xl lg:rounded-lg lg:max-h-832 min-h-320 h-full">
+            <div class="flex items-center h-16 flex-none border-b border-slate-200 dark:border-slate-700">
+                <div class="w-full h-full">
+                    <form class="flex items-center w-full h-full outline-none rounded-tl-lg"><label for="mysearch-input" id="mysearch-label" class="h-full w-14 mt-1 ml-1 px-4 flex items-center justify-center transition-colors duration-200 ease-in-out text-emerald-200"><div class="text-2xl text-emerald-500"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" width="1em"><path d="M942.14826666 878.7968l-200.56746667-229.92213333C795.37493333 583.8848 827.73333333 500.5312 827.73333333 409.6 827.73333333 202.27413333 659.59253333 34.13333333 452.26666666 34.13333333 244.87253333 34.13333333 76.79999999 202.27413333 76.79999999 409.6S244.87253333 785.06666667 452.26666666 785.06666667c77.14133333 0 148.82133333-23.3472 208.41813333-63.21493334l199.33866667 228.5568c19.72906667 22.7328 54.272 24.91733333 76.8 5.25653334C959.62453333 935.86773333 961.87733333 901.46133333 942.14826666 878.7968zM179.19999999 409.6c0-150.59626667 122.4704-273.06666667 273.06666667-273.06666667 150.59626667 0 273.06666667 122.4704 273.06666667 273.06666667s-122.4704 273.06666667-273.06666667 273.06666667C301.67039999 682.66666667 179.19999999 560.19626667 179.19999999 409.6z"></path></svg></div></label>
+                        <div
+                            class="relative flex-1"> <input class="flex-1 font-light h-full bg-transparent focus:text-slate-900 text-slate-500 dark:text-slate-300 placeholder-slate-400 placeholder-opacity-80 shadow-none outline-none truncate text-lg sm:text-2xl caret-color-emerald-400 leading-normalized w-full appearance-none rounded-none transition-colors duration-200 ease-in-out"
+                                id="mysearch-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search for cheatsheet" maxlength="128" type="text" enterkeyhint="go"></div> <button id="mysearch-clear" type="reset"
+                    class="items-center justify-center h-full w-14 px-4 text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 opacity-75 fill-current cursor-pointer transition-fast-out flex"><i class="icon icon-close text-xs font-bold"></i></button></form>
+            </div>
+            <div class="w-px h-8 bg-slate-100 dark:bg-slate-400/20 flex-none"></div> <button class="cancel mr-1 px-4 h-full text-slate-500 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-300"> Cancel</button></div>
+        <div class="flex flex-grow overflow-hidden lg:rounded-br-lg">
+            <div class="relative w-full flex-none overflow-y-auto lg:w-1/2">
+                <ul id="mysearch-list"></ul>
+            </div>
+            <div class="preview-panel shadow-inner bg-slate-100 dark:bg-slate-800 lg:block w-1/2 flex-none overflow-y-auto"></div>
+        </div>
+    </div>
+    </div>
+
+    <div id="carbon_container"></div>
+</body>
+<script src="main.js"></script>
+<script>
+    // Get all pre > code elements
+    const codeBlocks = document.querySelectorAll('pre > code');
+    const initInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path> </svg>';
+    const successInnerHTML = '<svg height="1em" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>';
+    codeBlocks.forEach(function(codeBlock) {
+        // Create a copy button element
+        const copyButton = document.createElement('button');
+        copyButton.className = 'bg-emerald-500 p-2 text-white fadeIn shadow-xl rounded flex items-center absolute top-2 right-2';
+        copyButton.innerHTML = initInnerHTML;
+        copyButton.style.opacity = "0";
+        const parent = codeBlock.parentNode;
+
+        parent.style = "position: relative;"
+        parent.insertBefore(copyButton, codeBlock);
+
+        // Add click event listener to copy button
+        copyButton.addEventListener('click', () => {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyButton.innerHTML = successInnerHTML;
+                setTimeout(() => {
+                    copyButton.innerHTML = initInnerHTML;
+                }, 1000);
+            });
+        });
+
+        parent.addEventListener('mouseenter', () => {
+            copyButton.style.opacity = "1";
+        });
+        parent.addEventListener('mouseleave', () => {
+            copyButton.style.opacity = "0";
+        });
+    });
+</script>
+
+
+</html>
